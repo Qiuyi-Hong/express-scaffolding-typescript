@@ -1,0 +1,41 @@
+{
+  "name": "express-scaffolding-typescript",
+  "version": "1.0.0",
+  "description": "Scaffold new Express.js application with TypeScript",
+  "keywords": [
+    "express"
+  ],
+  "license": "MIT",
+  "author": "Qiuyi Hong",
+  "type": "module",
+  "main": "lib/express-scaffolding-typescript.js",
+  "bin": {
+    "express-scaffolding-typescript": "bin/cli.js"
+  },
+  "files": [
+    "bin",
+    "lib"
+  ],
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "start": "node bin/cli.js",
+    "lint": "eslint bin lib/*.js test eslint.config.mjs",
+    "test": "node --test"
+  },
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "eslint": "^10.6.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.6",
+    "globals": "^17.7.0",
+    "prettier": "3.9.4",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.62.1"
+  },
+  "dependencies": {
+    "edit-json-file": "^1.8.1",
+    "ncp": "^2.0.0"
+  }
+}
