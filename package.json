@@ -8,9 +8,9 @@
   "license": "MIT",
   "author": "Qiuyi Hong",
   "type": "module",
-  "main": "lib/express-scaffolding-typescript.js",
+  "main": "lib/express-scaffolding-typescript.ts",
   "bin": {
-    "express-scaffolding-typescript": "bin/cli.js"
+    "express-scaffolding-typescript": "bin/cli.ts"
   },
   "files": [
     "bin",
@@ -20,12 +20,20 @@
     "lib": "lib"
   },
   "scripts": {
-    "start": "node bin/cli.js",
-    "lint": "eslint bin lib/*.js test eslint.config.mjs",
-    "test": "node --test"
+    "start": "tsx bin/cli.ts",
+    "lint": "eslint bin lib/*.ts test eslint.config.mjs",
+    "test": "tsx --test"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Qiuyi-Hong/express-scaffolding-typescript.git"
+  },
+  "homepage": "https://github.com/Qiuyi-Hong/express-scaffolding-typescript#readme",
   "devDependencies": {
     "@eslint/js": "^10.0.1",
+    "@types/edit-json-file": "^1.7.4",
+    "@types/ncp": "^2.0.8",
+    "@types/node": "^26.1.0",
     "eslint": "^10.6.0",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.6",

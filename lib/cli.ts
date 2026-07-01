@@ -1,5 +1,5 @@
 import { resolve } from "node:path";
-import expressGenTs from "./express-scaffolding-typescript.js";
+import expressGenTs from "./express-scaffolding-typescript.ts";
 
 /******************************************************************************
                                  Run
@@ -19,7 +19,7 @@ if (useYarnIdx > -1) {
 
 // Setup destination
 let destination = "express-scaffolding-ts";
-if (args.length > 0) {
+if (args.length > 0 && args[0]) {
   destination = args[0];
 }
 destination = resolve(process.cwd(), destination);

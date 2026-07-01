@@ -38,7 +38,7 @@ const DEV_DEPENDENCIES = [
 
 // "ncp" options
 const ncpOpts = {
-  filter: (fileName) => {
+  filter: (fileName: string) => {
     return !relative(PROJECT_FOLDER_PATH, fileName)
       .split(/[\\/]/)
       .some((entry) => EXCLUDED_TEMPLATE_ENTRIES.has(entry));
@@ -52,7 +52,7 @@ const ncpOpts = {
 /**
  * Entry point
  */
-async function expressGenTs(destination, useYarn) {
+async function expressGenTs(destination: string, useYarn: boolean) {
   await copyProjectFiles(destination);
   updatePackageJson(destination);
   await renameGitignoreFile(destination);
@@ -62,22 +62,20 @@ async function expressGenTs(destination, useYarn) {
 /**
  * Copy project files
  */
-function copyProjectFiles(destination) {
+function copyProjectFiles(destination: string) {
   const source = PROJECT_FOLDER_PATH;
-  return /** @type {Promise<void>} */ (
-    new Promise((res, rej) => {
-      return ncp(source, destination, ncpOpts, (err) => {
-        return err ? rej(err) : res();
-      });
-    })
-  );
+  return /** @type {Promise<void>} */ new Promise<void>((res, rej) => {
+    return ncp(source, destination, ncpOpts, (err) => {
+      return err ? rej(err) : res();
+    });
+  });
 }
 
 /**
  * Set update the package.json file.
  */
-function updatePackageJson(destination) {
-  let file = editJsonFile(destination + "/package.json", {
+function updatePackageJson(destination: string) {
+  const file = editJsonFile(destination + "/package.json", {
     autosave: true,
   });
   file.set("name", basename(destination));
@@ -88,7 +86,7 @@ function updatePackageJson(destination) {
 /**
  * Because npm does not allow .gitignore to be published.
  */
-async function renameGitignoreFile(destination) {
+async function renameGitignoreFile(destination: string) {
   const source = join(destination, "gitignore");
   if (!existsSync(source)) {
     return;
@@ -99,11 +97,11 @@ async function renameGitignoreFile(destination) {
 /**
  * Download the dependencies.
  */
-function downloadNodeModules(destination, useYarn) {
+function downloadNodeModules(destination: string, useYarn: boolean) {
   const options = { cwd: destination };
   // Setup dependencies string
-  let depStr = DEPENDENCIES.join(" "),
-    devDepStr = DEV_DEPENDENCIES.join(" ");
+  const depStr = DEPENDENCIES.join(" ");
+  const devDepStr = DEV_DEPENDENCIES.join(" ");
   // Setup download command
   let downloadLibCmd, downloadDepCmd;
   if (useYarn) {
