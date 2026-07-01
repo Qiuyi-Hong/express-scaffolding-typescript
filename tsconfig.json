@@ -2,7 +2,7 @@
   // Visit https://aka.ms/tsconfig to read more about this file
   "compilerOptions": {
     // File Layout
-    // "rootDir": "./src",
+    // "rootDir": "./lib",
     // "outDir": "./dist",
 
     // Environment Settings
@@ -46,4 +46,5 @@
     "allowImportingTsExtensions": true,
     "noEmit": true
   }
+  // "include": ["lib/*.ts"]
 }

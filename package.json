@@ -1,6 +1,6 @@
 {
   "name": "express-scaffolding-typescript",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Scaffold new Express.js application with TypeScript",
   "keywords": [
     "express"
@@ -44,6 +44,7 @@
   },
   "dependencies": {
     "edit-json-file": "^1.8.1",
-    "ncp": "^2.0.0"
+    "ncp": "^2.0.0",
+    "tsx": "^4.22.4"
   }
 }
