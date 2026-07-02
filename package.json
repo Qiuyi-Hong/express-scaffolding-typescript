@@ -1,6 +1,6 @@
 {
   "name": "express-scaffolding-typescript",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Scaffold new Express.js application with TypeScript",
   "keywords": [
     "express",
@@ -18,7 +18,8 @@
   },
   "files": [
     "bin",
-    "lib"
+    "lib",
+    "lib/projectFolder/.gitignore"
   ],
   "directories": {
     "lib": "lib"

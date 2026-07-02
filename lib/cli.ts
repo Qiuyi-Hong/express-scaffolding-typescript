@@ -11,6 +11,7 @@ console.log(`
         🚀     express-scaffolding-typescript     🚀
         Scaffold the Express.js backend application
 ───────────────────────────────────────────────────────────
+Setting up the new Express project with TypeScript...
 `);
 const args = process.argv.slice(2);
 

@@ -39,6 +39,13 @@ test("published bin scaffolds an installable Express TypeScript project", () => 
     const tarballName = packResult.stdout.trim().split("\n").at(-1);
     const tarballPath = join(tempDir, tarballName);
 
+    const tarResult = run("tar", ["-tf", tarballPath]);
+    assert.equal(tarResult.status, 0, outputFor(tarResult));
+
+    const tarEntries = tarResult.stdout.trim().split("\n");
+    assert.ok(tarEntries.includes("package/lib/projectFolder/.gitignore"));
+    assert.ok(!tarEntries.includes("package/lib/projectFolder/gitignore"));
+
     const execResult = run(
       "npm",
       [
@@ -56,7 +63,11 @@ test("published bin scaffolds an installable Express TypeScript project", () => 
 
     assert.ok(existsSync(join(projectDir, "src", "server.ts")));
     assert.ok(existsSync(join(projectDir, ".env")));
+    assert.ok(existsSync(join(projectDir, ".gitignore")));
     assert.ok(existsSync(join(projectDir, "node_modules", "express")));
+
+    const gitignore = readFileSync(join(projectDir, ".gitignore"), "utf8");
+    assert.match(gitignore, /node_modules\//);
 
     const packageJson = JSON.parse(
       readFileSync(join(projectDir, "package.json"), "utf8"),

@@ -1,5 +1,5 @@
 import { existsSync } from "node:fs";
-import { rename } from "node:fs/promises";
+import { copyFile } from "node:fs/promises";
 import { execSync } from "node:child_process";
 import { basename, dirname, join, relative } from "node:path";
 import { fileURLToPath } from "node:url";
@@ -54,8 +54,8 @@ const ncpOpts = {
  */
 async function expressGenTs(destination: string) {
   await copyProjectFiles(destination);
+  await copyGitignoreFile(destination);
   updatePackageJson(destination);
-  await renameGitignoreFile(destination);
   downloadNodeModules(destination);
 }
 
@@ -84,14 +84,24 @@ function updatePackageJson(destination: string) {
 }
 
 /**
- * Because npm does not allow .gitignore to be published.
+ * npm installs packed .gitignore files as .npmignore files.
  */
-async function renameGitignoreFile(destination: string) {
-  const source = join(destination, "gitignore");
-  if (!existsSync(source)) {
+async function copyGitignoreFile(destination: string) {
+  const destinationGitignore = join(destination, ".gitignore");
+  if (existsSync(destinationGitignore)) {
     return;
   }
-  await rename(source, join(destination, ".gitignore"));
+
+  const sourceGitignore = join(PROJECT_FOLDER_PATH, ".gitignore");
+  if (existsSync(sourceGitignore)) {
+    await copyFile(sourceGitignore, destinationGitignore);
+    return;
+  }
+
+  const npmConvertedGitignore = join(PROJECT_FOLDER_PATH, ".npmignore");
+  if (existsSync(npmConvertedGitignore)) {
+    await copyFile(npmConvertedGitignore, destinationGitignore);
+  }
 }
 
 /**
