@@ -3,7 +3,11 @@
   "version": "1.0.1",
   "description": "Scaffold new Express.js application with TypeScript",
   "keywords": [
-    "express"
+    "express",
+    "scaffold",
+    "nodejs",
+    "typescript",
+    "backend"
   ],
   "license": "MIT",
   "author": "Qiuyi Hong",

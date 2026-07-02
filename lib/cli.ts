@@ -6,7 +6,12 @@ import expressGenTs from "./express-scaffolding-typescript.ts";
 ******************************************************************************/
 
 // Init
-console.log("Setting up new Express/TypeScript project...");
+console.log(`
+───────────────────────────────────────────────────────────
+        🚀     express-scaffolding-typescript     🚀
+        Scaffold the Express.js backend application
+───────────────────────────────────────────────────────────
+`);
 const args = process.argv.slice(2);
 
 // Setup use yarn
@@ -27,7 +32,7 @@ destination = resolve(process.cwd(), destination);
 // Creating new project finished
 expressGenTs(destination, useYarn)
   .then(() => {
-    console.log("Project setup complete!");
+    console.log(`✔️ Success! Your project setup is ready at: ${destination}`);
   })
   .catch((err) => {
     console.error(err);
