@@ -14,14 +14,6 @@ console.log(`
 `);
 const args = process.argv.slice(2);
 
-// Setup use yarn
-let useYarn = false;
-const useYarnIdx = args.indexOf("--use-yarn");
-if (useYarnIdx > -1) {
-  useYarn = true;
-  args.splice(useYarnIdx, 1);
-}
-
 // Setup destination
 let destination = "express-scaffolding-ts";
 if (args.length > 0 && args[0]) {
@@ -30,7 +22,7 @@ if (args.length > 0 && args[0]) {
 destination = resolve(process.cwd(), destination);
 
 // Creating new project finished
-expressGenTs(destination, useYarn)
+expressGenTs(destination)
   .then(() => {
     console.log(`✔️ Success! Your project setup is ready at: ${destination}`);
   })

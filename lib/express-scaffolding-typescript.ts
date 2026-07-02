@@ -52,11 +52,11 @@ const ncpOpts = {
 /**
  * Entry point
  */
-async function expressGenTs(destination: string, useYarn: boolean) {
+async function expressGenTs(destination: string) {
   await copyProjectFiles(destination);
   updatePackageJson(destination);
   await renameGitignoreFile(destination);
-  downloadNodeModules(destination, useYarn);
+  downloadNodeModules(destination);
 }
 
 /**
@@ -97,23 +97,14 @@ async function renameGitignoreFile(destination: string) {
 /**
  * Download the dependencies.
  */
-function downloadNodeModules(destination: string, useYarn: boolean) {
+function downloadNodeModules(destination: string) {
   const options = { cwd: destination };
   // Setup dependencies string
   const depStr = DEPENDENCIES.join(" ");
   const devDepStr = DEV_DEPENDENCIES.join(" ");
-  // Setup download command
-  let downloadLibCmd, downloadDepCmd;
-  if (useYarn) {
-    downloadLibCmd = "yarn add " + depStr;
-    downloadDepCmd = "yarn add " + devDepStr + " -D";
-  } else {
-    downloadLibCmd = "npm i -s " + depStr;
-    downloadDepCmd = "npm i -D " + devDepStr;
-  }
   // Execute command
-  execSync(downloadLibCmd, options);
-  execSync(downloadDepCmd, options);
+  execSync("npm i -s " + depStr, options);
+  execSync("npm i -D " + devDepStr, options);
 }
 
 /******************************************************************************
