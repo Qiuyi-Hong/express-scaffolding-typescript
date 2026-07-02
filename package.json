@@ -1,6 +1,6 @@
 {
   "name": "express-scaffolding-typescript",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Scaffold new Express.js application with TypeScript",
   "keywords": [
     "express",
